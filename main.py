@@ -7,8 +7,6 @@ from account import Account, Gender
 from database import DBHandler as db
 from card import Card
 import os
-#from time import sleep
-import log
 from time import sleep as sl
 from datetime import datetime
 
@@ -174,7 +172,8 @@ if __name__ == '__main__':
                 2. Withdraw
                 3. Deposit
                 4. Transaction History
-                5. Make Transaction\n""")
+                5. Make Transaction
+                6. Sleep\n""")
                 try:
                     option = int(input("Choice: "))
                 except KeyboardInterrupt:
@@ -318,6 +317,22 @@ if __name__ == '__main__':
                                     print(f"Successfully transferred ${amount} to {target.Name} ({target.AccountNumber}).")
                                     input("\nPress Enter to continue")
                                     break
+                        case 6:
+                            while True:
+                                Clear()
+                                Logo()
+                                try:
+                                    seconds = int(input("\nEnter the number of seconds to sleep: "))
+                                except ValueError:
+                                    print("Invalid number.")
+                                    sleep(2)
+                                    continue
+                                except KeyboardInterrupt:
+                                    break
+                                else:
+                                    sleep(seconds)
+                                    print(f"\nSlept for {seconds} seconds.")
+                                    input("\nPress Enter to continue.")
+                                    break
     #Cleanup
     db.Deinitialize()
-
